@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=ru.yurasov.simpleradio
+Exec=/usr/bin/ru.yurasov.simpleradio
+Name=Simple Radio
+Name[ru]=Радио
+
+[X-Application]
+Permissions=Audio;Internet;
+OrganizationName=ru.yurasov
+ApplicationName=simpleradio
+#ExecDBus=/usr/bin/ru.auroraos.SimpleRadio
