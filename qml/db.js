@@ -78,7 +78,6 @@ function insert(name, ip) {
 }
 
 function update(id, name, ip) {
-          console.log(id, name, ip);
     var db = connectDB();
       db.transaction(function (tx) {
             tx.executeSql(
@@ -102,4 +101,33 @@ function del(id) {
 function play(ip) {
     mediaPlayer.source = ip
     mediaPlayer.play()
+}
+
+
+
+/***************************************/
+/*** import data JSON  ***/
+/***************************************/
+function json2db(jsonString, errormsg) {
+    var lines = jsonString.trim().split('\n');
+     for(var i=0; lines.length > i ; i++) {
+         var station = JSON.parse(lines[i])
+         var regex = /\.aac$/
+         var hasAAC = regex.test(station.url )
+        if( !hasAAC ){
+           insert(station.name, station.url )
+        }
+     }
+      return(true)
+}
+
+
+/***************************************/
+/*** notification   ***/
+/***************************************/
+function banner(notificationType, message) {
+    notification.close()
+    notification.body = message
+    notification.previewSummary = notificationType
+    notification.publish()
 }

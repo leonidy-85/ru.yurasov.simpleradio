@@ -11,81 +11,107 @@ Page {
 
     property bool player: false
     property int number: 0
+    property string url: ""
 
     Component.onCompleted: {
         DB.initializeDB()
     }
 
-    SilicaFlickable {
+
+    Timer {
+        id: db
+        interval: 1000
+        triggeredOnStart: true
+        running: true
+        repeat: true
+        onTriggered: {
+            mainapp.track= mediaPlayer.title
+
+            if (mainapp.state_b !== true) {
+                playlist.clear()
+                DB.readPlaylist()
+                DB.player = false
+                mainapp.state_b=true
+            }
+
+            if(mainapp.play===true && mainapp.cover_st===true){
+                mediaPlayer.pause()
+                mainapp.cover_st = false;
+            }
+            if(mainapp.play===false && mainapp.cover_st===true) {
+                mediaPlayer.source = DB.adr
+                mediaPlayer.play()
+                mainapp.cover_st = false;
+            }
+        }
+    }
+
+    Component {
+        id: dialogComponent
+        Dialog {
+            DialogHeader {
+                id: header
+                title: qsTr("Do you want to delete the ?")
+            }
+        }
+    }
+
+    AppBarMenu {}
+
+    Column {
         anchors.fill: parent
+        spacing: 5
+        anchors.topMargin: 140
 
-        AppBarMenu {}
 
-        Component {
-            id: dialogComponent
-            Dialog {
-                DialogHeader {
-                    id: header
-                    title: qsTr("Do you want to delete the ?")
+        SilicaFlickable {
+            width: parent.width
+            leftMargin: Theme.horizontalPageMargin
+            rightMargin: Theme.horizontalPageMargin
+            anchors.topMargin: 50
+            height:  1000
+
+            SilicaListView {
+                id: list
+                anchors.fill: parent
+                leftMargin: Theme.horizontalPageMargin
+                rightMargin: Theme.horizontalPageMargin
+                VerticalScrollDecorator {}
+
+                model: ListModel {
+                    id: playlist
                 }
-            }
-        }
-        Timer {
-            id: db
-            interval: 5000
-            triggeredOnStart: true
-            running: true
-            repeat: true
-            onTriggered: {
-                if (DB.state_b != true) {
-                    playlist.clear()
-                    DB.readPlaylist()
-                    DB.player = false
-                }
-            }
-        }
-        ListModel {
-            id: playlist
-            Component.onCompleted: DB.readPlaylist()
-        }
-        Column {
-            anchors.centerIn: parent
-            width: parent.width - 100
-            spacing: 50
+                delegate: ListItem {
+                    menu: contextMenu
+                    contentHeight: Theme.itemSizeSmall
+                    ListView.onRemove: animateRemoval(ListItem)
 
-            Row {
-                width: parent.width
-                height: 800
-
-                ListView {
-                    model: playlist
-                    id: listing
-                    anchors.fill: parent
-
-                    delegate: ListItem {
-                        width: ListView.view.width
-                        contentHeight: Theme.itemSizeSmall
-
-                        MenuItem {
-                            Label {
-                                id: id_list
-                                text: id
-                                anchors.leftMargin: Theme.paddingMedium
-                                font.pixelSize: Theme.fontSizeMedium
-                                color: (highlighted || DB.adr === ip) ? Theme.highlightColor : Theme.primaryColor
-                            }
-                            Label {
-                                id: name_list
-                                text: name
-                                anchors.left: id_list.right
-                                anchors.leftMargin: Theme.paddingMedium
-                                font.pixelSize: Theme.fontSizeMedium
-                                color: (highlighted || DB.adr === ip) ? Theme.highlightColor : Theme.primaryColor
-                            }
-
+                    Item {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
                         }
+                        height: Theme.itemSizeSmall
+                        Label {
+                            id: id_list
+                            text: id
+                            anchors.leftMargin: Theme.paddingMedium
+                            font.pixelSize: Theme.fontSizeMedium
+                            color: (highlighted || DB.adr === ip) ? Theme.highlightColor : Theme.primaryColor
+                        }
+                        Label {
+                            id: name_list
+                            text: name
+                            anchors.left: id_list.right
+                            anchors.leftMargin: Theme.paddingMedium
+                            font.pixelSize: Theme.fontSizeMedium
+                            color: (highlighted || DB.adr === ip) ? Theme.highlightColor : Theme.primaryColor
+                        }
+                    }
+                    onPressAndHold: menu.active ? menu.hide() : menu.open(listItem)
 
-                        menu: ContextMenu {
+                    Component {
+                        id: contextMenu
+                        ContextMenu {
                             MenuItem {
                                 text: qsTr("Edit")
                                 onClicked: pageStack.push(Qt.resolvedUrl(
@@ -107,130 +133,141 @@ Page {
                                 }
                             }
                         }
-                        onClicked: {
-                            onClicked: DB.play(ip)
-                            DB.adr = ip//???
-                             player = true
-                            play_b.text = qsTr("Pause")
-                        }
                     }
-                }
-            }
-
-            MediaPlayer {
-                id: mediaPlayer
-                autoPlay: true
-                source: url
-                property string title: !!metaData.author
-                                       && !!metaData.title ? qsTr(
-                                                                 "%1 - %2").arg(
-                                                                 metaData.author).arg(
-                                                                 metaData.title) : metaData.author
-                                                             || metaData.title
-                                                             || metaData.audioBitRate
-                                                             || metaData.AudioCodec
-                                                             || source
-            }
-
-            MprisPlayer {
-                id: mprisPlayer
-                serviceName: "sradio"
-                identity: mediaPlayer.title
-                supportedUriSchemes: ["file"]
-                canControl: true
-
-                canGoNext: false
-                canGoPrevious: false
-                canPause: true
-                canPlay: true
-                canSeek: false
-
-
-                playbackStatus: player ? Mpris.Playing : Mpris.Paused
-
-                onPlayPauseRequested: {
-                    if (player) {
-                        mediaPlayer.pause()
-                        player = false
-                    } else {
-                        mediaPlayer.play()
+                    onClicked: {
+                        onClicked: DB.play(ip)
+                        DB.adr = ip
                         player = true
+                        mainapp.state_b=false
+
                     }
-                }
-            }
-
-            Row {
-                width: parent.width
-                height: 50
-                Label {
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Theme.paddingLarge
-                    }
-                    font.pixelSize: Theme.fontSizeLarge
-                    color: Theme.primaryColor
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    // truncationMode: Elide
-                    wrapMode: Text.Wrap
-                    text: mediaPlayer.errorString || mediaPlayer.title
-                }
-                Separator {
-                    color: Theme.highlightColor
-                    width: parent.width
-                }
-
-                Label {
-                    anchors.centerIn: parent
-                    font.pixelSize: Theme.fontSizeLarge
-                    color: Theme.primaryColor
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: mediaPlayer.audioBitRate
-                }
-
-                Label {
-                    anchors.centerIn: parent
-                    font.pixelSize: Theme.fontSizeLarge
-                    color: Theme.primaryColor
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: mediaPlayer.AudioCodec
                 }
             }
         }
+
         Column {
-            id: col2
-            spacing: units.gu(1)
             anchors {
                 margins: units.gu(2)
                 bottom: parent.bottom
                 left: parent.left
                 right: parent.right
             }
+            height: 150
+
+            Separator {
+                color: Theme.primaryColor
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
 
             Row {
                 spacing: units.gu(2)
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 30
+                width: 100
 
-                Button {
-                    id: play_b
-                    color: "#068706"
-                    width: units.gu(14)
-                    text:  qsTr("Play")
+                IconButton {
+                    anchors.leftMargin: 50
+                    icon.source: mainapp.play === true ?
+                                     "image://theme/icon-l-play?" + (pressed ? Theme.highlightColor : Theme.primaryColor) :
+                                     "image://theme/icon-l-pause?" + (pressed ? Theme.highlightColor : Theme.primaryColor)
+
                     onClicked: {
-                        //  describe.text = dbprimary.get(channel).descripcion
-                        if (player === false) {
-                            play_b.text = qsTr("Play")
-                            mediaPlayer.source = DB.adr
+                        if (mainapp.play === false) {
                             mediaPlayer.pause()
-                            player = true
+                            mainapp.play = true
                         } else {
-
-                            play_b.text = qsTr("Pause")
+                            mediaPlayer.source = DB.adr
                             mediaPlayer.play()
-                            player = false
+                            mainapp.play = false
                         }
                     }
                 }
+
+                Row {
+                   width: Math.max(t1.width + spacing, 0)
+                    height: Theme.fontSizeSmall + Theme.paddingLarge
+                    spacing: Theme.paddingMedium
+                    y: Theme.paddingLarge
+
+                    Item {
+                        id: root
+                        property int spacing: 50
+                        property real startX: root.width
+                        width: t1.width + spacing
+                        height: t1.height
+                        clip: true
+                        anchors.left: parent.left
+                        anchors.leftMargin: 20
+
+                        Label {
+                            id: t1
+                            text: mediaPlayer.errorString || mediaPlayer.title
+                            NumberAnimation on x {
+                                running: true
+                                from: 0
+                                to: -root.width
+                                duration: 1000
+                                //loops: Animation.Infinite
+                                onRunningChanged: {
+                                    if (!running) {
+                                        //  t1.x = startX;
+                                        duration = 20000;
+                                        running = true;
+                                    }
+                                }
+                            }
+                            font.pixelSize: Theme.fontSizeSmall
+                            color: Theme.primaryColor
+
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+
+
+    }
+
+
+    MediaPlayer {
+        id: mediaPlayer
+        autoPlay: false
+        source: url
+        property string title: !!metaData.author
+                               && !!metaData.title ? qsTr(
+                                                         "%1 - %2").arg(
+                                                         metaData.author).arg(
+                                                         metaData.title) : metaData.author
+                                                     || metaData.title
+                                                     || metaData.audioBitRate
+                                                     || metaData.AudioCodec
+                                                     || source
+
+    }
+
+    MprisPlayer {
+        id: mprisPlayer
+        serviceName: "sradio"
+        identity: mediaPlayer.title
+        supportedUriSchemes: ["file"]
+        canControl: true
+        canGoNext: false
+        canGoPrevious: false
+        canPause: true
+        canPlay: true
+        canSeek: false
+        playbackStatus: player ? Mpris.Playing : Mpris.Paused
+        onPlayPauseRequested: {
+            if (player) {
+                mediaPlayer.pause()
+                player = false
+            } else {
+                mediaPlayer.play()
+                player = true
             }
         }
     }

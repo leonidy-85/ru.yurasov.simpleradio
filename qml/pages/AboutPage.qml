@@ -22,10 +22,10 @@ Page {
             }
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "/usr/share/icons/hicolor/172x172/apps/ru.yurasov.SimpleRadio.png"
+                source: "/usr/share/icons/hicolor/172x172/apps/ru.yurasov.simpleradio.png"
             }
             Label {
-                text: qsTr("Version") +  " 1.0.1"
+              text: qsTr("Version") + " " + version
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.secondaryHighlightColor
             }
@@ -43,7 +43,7 @@ Page {
                 visible: isPortrait || (largeScreen && Screen.width > 1080)
             }
             Label {
-                text: "© Leonid Yurasov 2024"
+                text: qsTr("© Leonid Yurasov ") + buildyear
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             Separator {

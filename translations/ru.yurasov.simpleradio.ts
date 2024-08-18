@@ -14,6 +14,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="46"/>
+        <source>© Leonid Yurasov </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="62"/>
         <source>SimpleRadio is open source software licensed under the terms of the GNU General Public License.</source>
         <translation type="unfinished"></translation>
@@ -85,56 +90,79 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/AppBarMenu.qml" line="29"/>
+        <location filename="../qml/components/AppBarMenu.qml" line="28"/>
+        <source>Import stations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/AppBarMenu.qml" line="33"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>DefaultCoverPage</name>
+    <name>ImportPage</name>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="50"/>
-        <source>Simple Radio</source>
+        <location filename="../qml/pages/ImportPage.qml" line="60"/>
+        <source>Load playlist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="67"/>
+        <source>Filename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="78"/>
+        <source>File to import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="98"/>
+        <source>Here you can download playlist from file. Enter file location. Click download button to start downloading.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="127"/>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="142"/>
+        <source>Playlist database load from </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="149"/>
+        <source>Could not read from file </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="29"/>
-        <source>Do you want to delete the ?</source>
-        <translation>Вы подтверждаете удаление?</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="90"/>
-        <source>Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="99"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="125"/>
-        <source>%1 - %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qml/pages/MainPage.qml" line="204"/>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="218"/>
-        <location filename="../qml/pages/MainPage.qml" line="222"/>
-        <source>Play</source>
+        <location filename="../qml/pages/MainPage.qml" line="54"/>
+        <source>Do you want to delete the ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="114"/>
-        <location filename="../qml/pages/MainPage.qml" line="228"/>
-        <source>Pause</source>
+        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="125"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="241"/>
+        <source>%1 - %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

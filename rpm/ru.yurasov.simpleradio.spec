@@ -1,10 +1,12 @@
 Name:       ru.yurasov.simpleradio
+# >> macros
+# << macros
 
 Summary:    Простое онлайн радио
 Version:    1.0
-Release:    1
+Release:    2
 Group:      Qt/Qt
-License:    BSD-3-Clause
+License:    GPL
 URL:        https://github.com/leonidy-85/ru.yurasov.simpleradio
 
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -12,8 +14,6 @@ BuildRequires:  pkgconfig(auroraapp)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  desktop-file-utils
-
 
 %description
 Простое онлайн радио

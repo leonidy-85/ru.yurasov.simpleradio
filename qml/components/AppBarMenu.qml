@@ -24,6 +24,10 @@ import Aurora.Controls 1.0
                           text: qsTr("About")
                           onClicked: pageStack.push(Qt.resolvedUrl("../pages/AboutPage.qml"))
                       }
+                      PopupMenuItem {
+                          text: qsTr("Import stations")
+                          onClicked: pageStack.push(Qt.resolvedUrl("../pages/ImportPage.qml"))
+                      }
 
                       PopupMenuItem {
                           text: qsTr("Add")

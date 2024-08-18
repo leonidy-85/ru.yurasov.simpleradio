@@ -37,11 +37,24 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtMultimedia 5.6
+
 import "components"
 
 ApplicationWindow {
+    id: mainapp
+     property bool  play : false
+     property bool  cover_st : false
+
+     property bool  state_b : false
+     property string track : ""
+
+
+
     objectName: "applicationWindow"
     initialPage: Qt.resolvedUrl("pages/MainPage.qml")
     cover: Qt.resolvedUrl("cover/DefaultCoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
+
+
 }

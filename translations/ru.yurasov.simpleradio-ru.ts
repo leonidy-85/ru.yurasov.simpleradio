@@ -14,6 +14,11 @@
         <translation>Версия</translation>
     </message>
     <message>
+        <location filename="../qml/pages/AboutPage.qml" line="46"/>
+        <source>© Leonid Yurasov </source>
+        <translation>Леонид Юрасов</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/AboutPage.qml" line="62"/>
         <source>SimpleRadio is open source software licensed under the terms of the GNU General Public License.</source>
         <translation>SimpleRadio — это программное обеспечение с открытым исходным кодом, лицензированное в соответствии с условиями GNU General Public License.</translation>
@@ -85,57 +90,80 @@
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../qml/components/AppBarMenu.qml" line="29"/>
+        <location filename="../qml/components/AppBarMenu.qml" line="28"/>
+        <source>Import stations</source>
+        <translation>Загрузить плейлист</translation>
+    </message>
+    <message>
+        <location filename="../qml/components/AppBarMenu.qml" line="33"/>
         <source>Add</source>
         <translation>Добавить станцию</translation>
     </message>
 </context>
 <context>
-    <name>DefaultCoverPage</name>
+    <name>ImportPage</name>
     <message>
-        <location filename="../qml/cover/DefaultCoverPage.qml" line="50"/>
-        <source>Simple Radio</source>
-        <translation>Простое радио</translation>
+        <location filename="../qml/pages/ImportPage.qml" line="60"/>
+        <source>Load playlist</source>
+        <translation>Загрузить плейлист</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="67"/>
+        <source>Filename</source>
+        <translation>Имя файла</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="78"/>
+        <source>File to import</source>
+        <translation>Файл для импорта</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="98"/>
+        <source>Here you can download playlist from file. Enter file location. Click download button to start downloading.</source>
+        <translation>Здесь вы можете загрузить плейлист из файла. Выберете местоположение файла. Нажмите кнопку загрузки.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="127"/>
+        <source>Load</source>
+        <translation>Загрузить</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="142"/>
+        <source>Playlist database load from </source>
+        <translation>Плейлист загружен</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ImportPage.qml" line="149"/>
+        <source>Could not read from file </source>
+        <translation>Не удалось прочитать файл </translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="29"/>
-        <source>Do you want to delete the ?</source>
-        <translation>Вы хотите удалить ?</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="90"/>
-        <source>Edit</source>
-        <translation>Редактировать</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="99"/>
-        <source>Delete</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="125"/>
-        <source>%1 - %2</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="204"/>
         <source></source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="218"/>
-        <location filename="../qml/pages/MainPage.qml" line="222"/>
-        <source>Play</source>
-        <translation>Играть</translation>
+        <location filename="../qml/pages/MainPage.qml" line="54"/>
+        <source>Do you want to delete the ?</source>
+        <translation>Вы хотите удалить</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="114"/>
-        <location filename="../qml/pages/MainPage.qml" line="228"/>
-        <source>Pause</source>
-        <translation>Пауза</translation>
+        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <source>Edit</source>
+        <translation>Редактировать</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="125"/>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="241"/>
+        <source>%1 - %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
