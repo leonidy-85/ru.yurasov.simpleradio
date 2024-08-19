@@ -4,7 +4,7 @@ Name:       ru.yurasov.simpleradio
 
 Summary:    Простое онлайн радио
 Version:    1.0
-Release:    2
+Release:    3
 Group:      Qt/Qt
 License:    GPL
 URL:        https://github.com/leonidy-85/ru.yurasov.simpleradio

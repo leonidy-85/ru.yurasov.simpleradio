@@ -12,7 +12,6 @@ HEADERS += \
 
 DISTFILES += \
     AUTHORS.md \
-    LICENSE.BSD-3-CLAUSE.md \
     README.md \
     qml/pages/ImportPage.qml \
     qml/pages/MainPage.qml \
@@ -21,6 +20,7 @@ DISTFILES += \
     qml/pages/StantionPage.qml \
     qml/pages/DetailsPage.qml \
     qml/components/AppBarMenu.qml \
+    qml/PopupDialog.qml \
     qml/db.js \
     radio.desktop \
     radio.png \

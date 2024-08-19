@@ -12,6 +12,8 @@ Page {
     property bool player: false
     property int number: 0
     property string url: ""
+    property string name_global
+    property string id_global
 
     Component.onCompleted: {
         DB.initializeDB()
@@ -51,8 +53,16 @@ Page {
         Dialog {
             DialogHeader {
                 id: header
-                title: qsTr("Do you want to delete the ?")
+                title: qsTr("Do you want to delete ") + name_global + " ?"
+                  acceptText: qsTr("Delete")
+                  cancelText: qsTr("Cancel")
             }
+            onDone: {
+                   if (result == DialogResult.Accepted) {
+                        DB.del(id_global)
+                        mainapp.state_b=false
+                   }
+               }
         }
     }
 
@@ -123,13 +133,10 @@ Page {
                             }
                             MenuItem {
                                 text: qsTr("Delete")
-                                // onClicked: DB.del(ip)
                                 onClicked: {
-                                    var dialog = pageStack.push(
-                                                dialogComponent, name)
-                                    dialog.accepted.connect(function () {
-                                        onClicked: DB.del(id)
-                                    })
+                                    name_global=name
+                                    id_global=id
+                                    var dialog = pageStack.push(dialogComponent)
                                 }
                             }
                         }
@@ -219,17 +226,11 @@ Page {
                             }
                             font.pixelSize: Theme.fontSizeSmall
                             color: Theme.primaryColor
-
                         }
                     }
-
-
                 }
             }
         }
-
-
-
     }
 
 
@@ -246,7 +247,6 @@ Page {
                                                      || metaData.audioBitRate
                                                      || metaData.AudioCodec
                                                      || source
-
     }
 
     MprisPlayer {
@@ -271,6 +271,4 @@ Page {
             }
         }
     }
-
-
 }

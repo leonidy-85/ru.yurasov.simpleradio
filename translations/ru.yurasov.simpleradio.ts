@@ -146,22 +146,28 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="54"/>
-        <source>Do you want to delete the ?</source>
+        <location filename="../qml/pages/MainPage.qml" line="56"/>
+        <source>Do you want to delete </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <location filename="../qml/pages/MainPage.qml" line="58"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="125"/>
+        <location filename="../qml/pages/MainPage.qml" line="57"/>
+        <location filename="../qml/pages/MainPage.qml" line="135"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="241"/>
+        <location filename="../qml/pages/MainPage.qml" line="242"/>
         <source>%1 - %2</source>
         <translation type="unfinished"></translation>
     </message>

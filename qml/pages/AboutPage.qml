@@ -43,7 +43,7 @@ Page {
                 visible: isPortrait || (largeScreen && Screen.width > 1080)
             }
             Label {
-                text: qsTr("© Leonid Yurasov ") + buildyear
+                text: qsTr("© Leonid Yurasov ") + " " + buildyear
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             Separator {
